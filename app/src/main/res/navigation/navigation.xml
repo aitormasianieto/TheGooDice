@@ -16,5 +16,22 @@
     <fragment
         android:id="@+id/rollFragment"
         android:name="com.lya.thegoodice.roll.RollFragment"
-        android:label="RollFragment" />
+        android:label="RollFragment" >
+        <action
+            android:id="@+id/action_rollFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.lya.thegoodice.result.ResultFragment"
+        android:label="ResultFragment" >
+        <action
+            android:id="@+id/action_resultFragment_to_rollFragment"
+            app:destination="@id/rollFragment"
+            app:popUpTo="@id/mainFragment"
+            app:popUpToInclusive="false" />
+        <argument
+            android:name="dicesData"
+            app:argType="string[]" />
+    </fragment>
 </navigation>
