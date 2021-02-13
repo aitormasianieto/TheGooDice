@@ -31,7 +31,7 @@
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="false" />
         <argument
-            android:name="dicesData"
-            app:argType="string[]" />
+            android:name="diceResults"
+            app:argType="integer[]" />
     </fragment>
 </navigation>

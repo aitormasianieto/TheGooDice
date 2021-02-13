@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.lya.thegoodice.R
 import com.lya.thegoodice.databinding.ResultFragmentLayoutBinding
-import com.lya.thegoodice.roll.RollFragmentDirections
 
 class ResultFragment : Fragment() {
 
@@ -20,9 +19,6 @@ class ResultFragment : Fragment() {
 
     private lateinit var binding: ResultFragmentLayoutBinding
 
-    private val args: ResultFragmentArgs by navArgs()
-    private lateinit var data: Array<String>
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.result_fragment_layout, container, false)
@@ -31,9 +27,17 @@ class ResultFragment : Fragment() {
             this.findNavController().navigate(ResultFragmentDirections.actionResultFragmentToRollFragment())
         }
 
-        data = args.dicesData
-        binding.textViewResult.text = data.toString()
+        //get the passed args from roll frag
+        val args = ResultFragmentArgs.fromBundle(requireArguments())
 
+        //create a string value that holds every rolled dice result
+        var resultString = ""
+        for (i in args.diceResults){
+            resultString = resultString + i.toString() + " " //se queda un espacio en blanco al final; no es importante pero me da toc
+        }
+
+        //put the values of the results string in the text view
+        binding.textViewResult.text = resultString
         return binding.root
     }
 }
