@@ -3,6 +3,7 @@ package com.lya.thegoodice.roll
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,7 +43,9 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
             //convert the arrayList to an int array in order to pass it as a safe arg easily
             diceResultsToPass = IntArray(diceResults.size)
-            for(i in diceResults){
+
+            //SOLVED: TODO: Se están pasando los resultados, la 'i' son los resultados no el index DA ERROR
+            for(i in 0 until diceResults.size) {
                 diceResultsToPass[i] = diceResults[i]
             }
             //transition to the next frag
@@ -56,18 +59,19 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
         //Create an ArrayAdapter using the string array and a default spinner layout
         val spinnerArrayAdapter: ArrayAdapter<Int> =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, dices)
-
         // Set layout to use when the list of choices appear
         spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         // Set Adapter to Spinner
         spinner.adapter = spinnerArrayAdapter
-        //spinner.onItemSelectedListener = this
+        //Spinner needs this to work
+        spinner.onItemSelectedListener = this
 
         //Real Time Update of Number of dices
         binding.editTextNumbers.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable) {
-                numberOfDices = binding.editTextNumbers.text.toString().toInt()
+                //Da problemas escribir un numero y luego borrarlo
+                numberOfDices = if (binding.editTextNumbers.text.toString() != "") binding.editTextNumbers.text.toString().toInt() else 0
             }
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
@@ -84,8 +88,8 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     //rolls and returns the passed dice
-    private fun rollDice(diceType: Int): Int {
-        return Random.nextInt(1, diceType)
+    private fun rollDice(diTy: Int): Int {
+        return (1..diTy).random()
     }
 
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
