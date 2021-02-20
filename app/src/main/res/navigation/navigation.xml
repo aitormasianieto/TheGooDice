@@ -28,7 +28,7 @@
         <action
             android:id="@+id/action_resultFragment_to_rollFragment"
             app:destination="@id/rollFragment"
-            app:popUpTo="@id/mainFragment"
+            app:popUpTo="@id/rollFragment"
             app:popUpToInclusive="false" />
         <argument
             android:name="diceResults"

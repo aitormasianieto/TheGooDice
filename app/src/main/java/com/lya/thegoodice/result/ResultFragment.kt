@@ -1,13 +1,12 @@
 package com.lya.thegoodice.result
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.lya.thegoodice.R
 import com.lya.thegoodice.databinding.ResultFragmentLayoutBinding
 

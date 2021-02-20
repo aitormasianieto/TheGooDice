@@ -47,6 +47,9 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
             }
             //transition to the next frag
             this.findNavController().navigate(RollFragmentDirections.actionRollFragmentToResultFragment(diceResultsToPass))
+
+            //as the fragment does not destroy when pressing back button, this clears the actual array after passing it to the result frag
+            clearIntArray()
         }
 
         // Spinner
@@ -75,6 +78,13 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
         })
 
         return binding.root
+    }
+
+    private fun clearIntArray() {
+        diceResults.clear()
+        for (i in 0 until diceResults.size) {
+            diceResultsToPass[i] = diceResults[i]
+        }
     }
 
     //fills up the array of dice results
