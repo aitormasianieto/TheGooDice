@@ -3,7 +3,6 @@ package com.lya.thegoodice.roll
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,14 +14,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.lya.thegoodice.R
 import com.lya.thegoodice.databinding.RollFragmentLayoutBinding
-import kotlin.random.Random
 
 class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
     companion object {
         fun newInstance() = RollFragment()
     }
-
+    //bruh
     //Nota: si las metes en el companion se vuelven "static" y al volver sigue manteniéndose; EN-EL-COMPANION-NO-SE-METE-NA
     //vars
     var diceType: Int = 2
@@ -44,7 +42,6 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
             //convert the arrayList to an int array in order to pass it as a safe arg easily
             diceResultsToPass = IntArray(diceResults.size)
 
-            //SOLVED: TODO: Se están pasando los resultados, la 'i' son los resultados no el index DA ERROR
             for(i in 0 until diceResults.size) {
                 diceResultsToPass[i] = diceResults[i]
             }
