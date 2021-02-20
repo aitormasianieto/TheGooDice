@@ -21,7 +21,7 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
     companion object {
         fun newInstance() = RollFragment()
     }
-
+    //bruh
     //Nota: si las metes en el companion se vuelven "static" y al volver sigue manteniéndose; EN-EL-COMPANION-NO-SE-METE-NA
     //vars
     var diceType: Int = 2
@@ -62,7 +62,7 @@ class RollFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         // Set Adapter to Spinner
         spinner.adapter = spinnerArrayAdapter
-        //spinner.onItemSelectedListener = this
+        spinner.onItemSelectedListener = this
 
         //Real Time Update of Number of dices
         binding.editTextNumbers.addTextChangedListener(object : TextWatcher {
